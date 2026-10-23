@@ -36,7 +36,7 @@
       defense:rand(30,90), athletic:rand(35,96), durability:rand(35,95), clutch:rand(25,95),
       luck:rand(5,95), coach:rand(30,95), scout:rand(25,95), agent:rand(25,95),
       overall:rand(43,64), hype:rand(2,35), draftStock:rand(20,80), schoolRecord:0,
-      team:null, salary:0, careerEarnings:0, nbaSeasons:0, games:0, starts:0, ppg:0, rpg:0, apg:0,
+      team:null, salary:0, careerEarnings:0, nbaSeasons:0, games:0, starts:0, ppg:0, rpg:0, apg:0,bpg:0, spg:0,
       rings:0, allStar:0, awards:[], trades:0, injuries:0, peak:0, feed:[], history:[], lastEvent:null,
       draftPick:null, contractYears:0, role:"未定", playoffApps:0, retireAge:null
     };
