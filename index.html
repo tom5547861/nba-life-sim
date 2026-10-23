@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="人生ガチャでNBA選手のキャリアを歩む、無料のNBA人生シミュレーター。">
+  <title>NBA LIFE SIM — Your career. Your luck.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="NBA Life Sim ホーム">
+        <span class="brand-mark">N</span><span>NBA <b>LIFE SIM</b></span>
+      </a>
+      <div class="top-actions">
+        <span class="live-pill"><i></i> CAREER MODE</span>
+        <button class="icon-btn" id="soundToggle" aria-label="サウンド設定" title="サウンド演出の切り替え">♫</button>
+      </div>
+    </header>
+
+    <main id="app">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">THE LEAGUE IS WAITING</p>
+          <h1>才能だけじゃ、<br><em>人生は決まらない。</em></h1>
+          <p class="hero-sub">ドラフト1位のスターか。無名から這い上がるロールプレイヤーか。<br class="desktop-only">選べるのはポジションだけ。あとは、人生が決める。</p>
+          <div class="hero-stats">
+            <div><strong>30</strong><span>NBA TEAMS</span></div>
+            <div><strong>∞</strong><span>CAREER PATHS</span></div>
+            <div><strong>0円</strong><span>TO PLAY</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <div class="court-lines"></div>
+          <div class="hero-ball">🏀</div>
+          <div class="floating-card fc-top"><span class="mini-label">DRAFT STOCK</span><strong id="heroDraft">#18</strong><span class="up">▲ RISING</span></div>
+          <div class="floating-card fc-bottom"><span class="mini-label">THE JOURNEY</span><strong>ONE LIFE.</strong><strong>ONE SHOT.</strong></div>
+          <div class="hero-number">01</div>
+        </div>
+      </section>
+
+      <section class="setup-panel panel" id="setupPanel">
+        <div class="section-head">
+          <div><p class="eyebrow">CREATE YOUR PLAYER</p><h2>キャリアを始める</h2></div>
+          <span class="step-label">STEP 01 <span>/ 01</span></span>
+        </div>
+        <div class="setup-grid">
+          <div class="setup-left">
+            <label class="field-label" for="playerName">選手名 <span>OPTIONAL</span></label>
+            <input id="playerName" class="text-input" maxlength="22" placeholder="例：Kai Johnson" autocomplete="off">
+            <label class="field-label">ポジションを選択 <span>POSITION</span></label>
+            <div class="position-grid" role="group" aria-label="ポジション">
+              <button class="position-card" data-pos="PG"><span class="pos-num">01</span><strong>PG</strong><span>Point Guard</span><small>司令塔</small></button>
+              <button class="position-card" data-pos="SG"><span class="pos-num">02</span><strong>SG</strong><span>Shooting Guard</span><small>得点力</small></button>
+              <button class="position-card selected" data-pos="SF"><span class="pos-num">03</span><strong>SF</strong><span>Small Forward</span><small>万能型</small></button>
+              <button class="position-card" data-pos="PF"><span class="pos-num">04</span><strong>PF</strong><span>Power Forward</span><small>フィジカル</small></button>
+              <button class="position-card" data-pos="C"><span class="pos-num">05</span><strong>C</strong><span>Center</span><small>インサイド</small></button>
+            </div>
+            <label class="field-label" for="origin">バスケを始める場所 <span>BACKGROUND</span></label>
+            <select id="origin" class="text-input">
+              <option value="usa">アメリカ — 王道ルート</option>
+              <option value="international">海外 — 国際派ルート</option>
+              <option value="japan">日本 — 逆輸入ルート</option>
+            </select>
+            <p class="hint">※能力値や身長は選べない。人生ガチャで決まる。</p>
+            <button class="primary-btn" id="startBtn">人生を始める <span>↗</span></button>
+          </div>
+          <aside class="setup-right">
+            <div class="scouting-card">
+              <div class="scout-top"><span>SCOUTING REPORT</span><span class="scout-dot"></span></div>
+              <div class="silhouette"><div class="sil-head"></div><div class="sil-body"></div><div class="sil-arm left"></div><div class="sil-arm right"></div><div class="sil-leg left"></div><div class="sil-leg right"></div></div>
+              <p class="player-placeholder">YOUR NAME HERE</p>
+              <div class="report-row"><span>HEIGHT</span><b>???</b></div>
+              <div class="report-row"><span>WINGSPAN</span><b>???</b></div>
+              <div class="report-row"><span>POTENTIAL</span><b>UNSCOUTED</b></div>
+              <div class="scout-stamp">UNKNOWN<br>VARIABLE</div>
+            </div>
+            <p class="side-note"><span>✳</span> 未来はまだ、誰にも読めない。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="game-layout hidden" id="gamePanel">
+        <aside class="player-sidebar panel">
+          <div class="player-card-head"><span class="eyebrow">PLAYER PROFILE</span><span class="status-tag" id="stageTag">HIGH SCHOOL</span></div>
+          <div class="avatar-circle" id="avatar">SF</div>
+          <h2 id="displayName">Kai Johnson</h2>
+          <p class="player-meta" id="playerMeta">SF · Age 15 · USA</p>
+          <div class="overall-wrap"><span>OVERALL</span><strong id="overall">61</strong><div class="ovr-track"><i id="ovrBar"></i></div></div>
+          <div class="player-measures">
+            <div><span>HEIGHT</span><b id="height">6'7"</b></div>
+            <div><span>WINGSPAN</span><b id="wingspan">6'10"</b></div>
+            <div><span>ARCHETYPE</span><b id="archetype">Two-way wing</b></div>
+          </div>
+          <div class="ratings" id="ratings"></div>
+          <button class="secondary-btn full" id="saveBtn">保存する</button>
+          <button class="text-btn full" id="restartBtn">↻ 別の人生を始める</button>
+        </aside>
+        <section class="career-main">
+          <div class="career-topline">
+            <div><p class="eyebrow" id="chapterEyebrow">CHAPTER 01 / THE BEGINNING</p><h1 id="chapterTitle">高校バスケの幕開け</h1></div>
+            <div class="season-box"><span>CAREER YEAR</span><strong id="careerYear">01</strong></div>
+          </div>
+          <div class="story-card panel">
+            <div class="story-banner"><span id="storyIcon">🏀</span><span id="storyCategory">LIFE EVENT</span><span class="story-date" id="storyDate">AGE 15</span></div>
+            <h2 id="storyTitle">最初のチャンス</h2>
+            <p id="storyText">コーチが君に目を留めた。</p>
+            <div class="story-stats" id="storyStats"></div>
+          </div>
+          <div class="choice-section">
+            <div class="section-head compact"><div><p class="eyebrow">MAKE YOUR MOVE</p><h2>どうする？</h2></div><span class="choice-count" id="choiceCount">選択肢 01</span></div>
+            <div class="choices" id="choices"></div>
+          </div>
+          <div class="bottom-grid">
+            <div class="panel mini-panel"><div class="mini-head"><span>CAREER TIMELINE</span><span class="muted" id="timelineAge">AGE 15</span></div><div class="timeline" id="timeline"></div></div>
+            <div class="panel mini-panel"><div class="mini-head"><span>LEAGUE BUZZ</span><span class="buzz-dot"></span></div><div id="feed" class="feed"><p class="feed-item">君の物語が始まった。</p></div></div>
+          </div>
+          <div class="game-footer"><span>NBA LIFE SIM <b>· BETA</b></span><span>FICTIONAL SIMULATION · NOT AFFILIATED WITH THE NBA</span></div>
+        </section>
+      </section>
+    </main>
+    <footer class="site-footer"><span>NBA LIFE SIM</span><span>Built for the love of the game.</span><a href="README.md">ABOUT / DEPLOY</a></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
